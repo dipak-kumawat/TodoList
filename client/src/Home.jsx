@@ -6,14 +6,14 @@ const Home = () => {
   const [todos, setTodos] = useState([]);
   useEffect(() => {
     axios
-      .get("https://todo-list-api-neon.vercel.app/get")
+      .get("https://localhost:3001/get")
       .then((result) => setTodos(result.data))
       .catch((err) => console.log(err));
   }, []);
 
   const handleEdit = (id) => {
     axios
-      .put("https://todo-list-api-neon.vercel.app/update/" + id)
+      .put("https://localhost:3001/update/" + id)
       .then((result) => {
         location.reload()
       })
@@ -23,7 +23,7 @@ const Home = () => {
   
   const handleDelete = (id) => {
     axios
-      .delete("https://todo-list-api-neon.vercel.app/delete/" + id)
+      .delete("https://localhost:3001/delete/" + id)
       .then((result) => {
         location.reload()
       })
