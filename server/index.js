@@ -16,7 +16,7 @@ app.use(express.json());
 
 mongoose.connect("mongodb+srv://dipaksk11:dipak@123@cluster0.wee8c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 app.get('/', (req, res) =>{
-  res.send("Welcome to hello word ! ")
+  res.json("Welcome to hello word ! ")
 })
 
 app.get("/get", (req, res) => {
