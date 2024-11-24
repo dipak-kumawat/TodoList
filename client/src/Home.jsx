@@ -4,16 +4,22 @@ import axios from "axios";
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
-  useEffect(() => {
-    axios
-      .get("https://todo-list-api-mu.vercel.app/get")
-      .then((result) => setTodos(result.data))
-      .catch((err) => console.log(err));
-  }, []);
+useEffect(() => {
+  axios.get("/get")
+  .then((response) => {
+    setTodos(response.data);
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error("There was an error!", error);
+  });
+
+}, []);
+
 
   const handleEdit = (id) => {
     axios
-      .put("https://todo-list-api-mu.vercel.app/update/" + id)
+      .put("/update/" + id)
       .then((result) => {
         location.reload()
       })
@@ -23,7 +29,7 @@ const Home = () => {
   
   const handleDelete = (id) => {
     axios
-      .delete("https://todo-list-api-mu.vercel.app/delete/" + id)
+      .delete("/delete/" + id)
       .then((result) => {
         location.reload()
       })
@@ -32,7 +38,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <h2> To Do List <i class="uil uil-clipboard-notes"></i></h2>
+      <h2> To Do List <i className="uil uil-clipboard-notes"></i></h2>
       <Create />
       {todos.length === 0 ? (
         <div>
@@ -45,13 +51,13 @@ const Home = () => {
             <div className="checkbox" onClick={() => handleEdit(todo._id)}>
               {todo.done ? <i class="uil uil-check-circle"></i> 
               :
-              <i class="uil uil-circle"></i>
+              <i className="uil uil-circle"></i>
               }
               <p className={todo.done ? "line_throungh" :"" }>  
               {todo.task}
               </p>
             </div>
-            <i class="uil uil-trash-alt" onClick={() =>handleDelete(todo._id)}></i>
+            <i className="uil uil-trash-alt" onClick={() =>handleDelete(todo._id)}></i>
           </div>
         ))
       )}
