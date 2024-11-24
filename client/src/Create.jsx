@@ -4,7 +4,7 @@ import axios from 'axios'
 const Create = () => {
   const [task, setTask] = useState();
   const handleAdd = () => {
-        axios.post('https://todo-list-api-mu.vercel.app/add', {task:task})
+        axios.post('/add', {task:task})
         .then(result => {location.reload()})
         .catch(err => console.log(err))
         
